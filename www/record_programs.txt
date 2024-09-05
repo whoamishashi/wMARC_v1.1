@@ -1,0 +1,18 @@
+PROGRAM TITLE		EXECUTABLE FILE		NO. OF PARAMETERS		CURRENT PLOT
+
+Test the Command Line		basicCmdLine		1		None
+
+Sum of Numbers		sum		2		none
+
+Print a table		table		3		nOne
+
+Random curve		myplot_call		0		myplot.png
+
+Test		test		2		Test.png
+
+Random num generator		test_Iter		0		none
+
+Browse plots		none		0		plots
+
+Play song		Witch_Cackle.mp3		0		none
+

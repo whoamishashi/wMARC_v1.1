@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  %s
+  <title>Program details submission, output generation</title>
+</head>
+
+<body bgcolor="99CCFF" >
+<form action="/cgi-bin/main_program.cgi">
+
+<h1 style="background-color:3333FF;" align="center">
+
+<table border="0">
+<th>	  <p style="color:E0E0E0;"><font size="6"><u>wMARC 1.1</u></font>			</p>      </th>
+<tr> <td> <p style="color:E0E0E0;">web-based Murchison Widefield Array Receiver Console </p></td> </tr>
+</table>
+
+</h1>
+
+<p align = "right"><input type="submit" name="submit" value="Home"></p>
+<p>%s</p>
+
+<table width="1300" border="0">
+ <tr>	<td width="%s">Username*</td>  <td width="%s">:</td>  <td width="%s"><input value="%s" type= "text" maxlength="40" size="21" name="user"></td>  
+	<td>&nbsp;&nbsp;<font color="#ff0000">requires only alphanumeric characters, spaces or periods.</font></td> </tr>
+ <tr>	<td>Program selected*</td>     <td>:</td>  	      <td>%s</select></td>  <td>%s</td>			    </tr>
+ <tr> 	<td>%s</td>	               <td>:</td>  	      <td>%s</select></td>  <td>%s</td>			    </tr>
+ <tr>	<td>&nbsp;</td>		       <td>&nbsp;</td>	      <td>&nbsp;</td>	    <td>&nbsp;</td>		    </tr>
+ <tr> 	%s													    </tr>
+ <tr> 	<td><input style="width: 50" type="reset" name ="reset" value="Reset"> <input style="width: 130" type="submit" name ="submit" value="Submit"></td>
+	<td>&nbsp;</td>       	       <td>&nbsp;</td>	      <td>&nbsp;</td> 		   	 		    </tr>
+</table>
+
+<br>
+<hr size="5"; noshade>
+%s
+%s
+<input name="pastState" value="%s" type="hidden"><br>
+<p align = "right"><font size="1"><i>Shashikant Gupta <br> mails.shashikant@gmail.com <br>July 2nd, 2011</i></font></p>
+
+</form>
+
+</body>
+</html>

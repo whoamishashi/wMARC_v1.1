@@ -1,0 +1,1092 @@
+
+PROGRAM TITLE		EXECUTABLES		NO. OF PARAMETERS		CURRENT PLOT
+
+Test the Command Line		basicCmdLine		1		None
+
+Sum of Numbers		sum		2		none
+
+Print a table		table		3		nOne
+
+Random curve		myplot_call		0		myplot.png
+
+Test		test		2		Test.png
+
+Random num generator		test_Iter		0		none
+
+Browse plots		none		0		plots
+
+--------------------
+Call another cgi script from within a cgi script:
+	"""
+	use CGI;
+
+	if (redirect_needed) {
+	    # If redirect is desired, don't print headers...
+	    print CGI->redirect("http://some.other.url/");
+	    exit; 
+	}
+	
+	# If no redirect is desired...
+	print CGI->header();
+	"""
+-------------
+the repitition of the if statement is not good programming style
+extract digits from a string :
+	n = int(re.sub("\D", "", submit))-1
+-----------
+The reports produced by cgitb provide information that can save you a lot of time in tracking down bugs. You can always remove the cgitb line later when you have tested your script and are confident that it works correctly.
+
+FieldStorage class: Instantiate it exactly once, without arguments. This reads the form contents from standard input or the environment (depending on the value of various environment variables set according to the CGI standard). Since it may consume standard input, it should be instantiated only once.
+
+FieldStorage instance behaves like a Python dictionary in that we can test whether a given variable has a value with the has_key method and get the value using square bracket notation. Here's a simple example:
+
+import cgi
+# create a FieldStorage object to parse CGI input
+form = cgi.FieldStorage()
+# test whether the name field was sent
+if form.has_key('name'):
+    print "<p>Name was: ", form["name"].value, "</p>"
+
+Note that we use form["name"].value to get the value of the name field, the value of form["name"] is in fact an instance of a FieldStorage or MiniFieldStorage object. The value attribute contains the value sent in the HTTP request.
+
+Since the FieldStorage object behaves like a dictionary, we can iterate over the keys to generate a list of the data that was sent in the request:
+
+for key in form.keys():
+    print "<p>", key, ":", form.getvalue(key), "</p>"
+   
+
+This can be quite a useful debugging tool since it shows you what is being sent from the client on submission of the form.
+
+
+# perform some validation, do we have all the required fields?
+required = ['name', 'street', 'city', 'payment']
+valid = True
+for key in required:
+    if not form.has_key(key):
+        print "<p>Required field <strong>", key, "</strong> not supplied."
+        print "Please go back and complete the form.</p>"
+        valid = False
+        
+if valid:
+    # process the rest of the form
+    
+   
+
+
+Attributes of FieldStorage
+
+Every instance of class FieldStorage (e.g., 'form') has the following attributes:
+
+    form.name The name of the field, if it is specified
+    form.filename If an FTP transaction, the client-side filename
+    form.value The value of the field as a string
+    form.file file object from which data can be read
+    form.type The content type, if applicable
+    form.type_options The options of the 'content-type' line of the HTTP request, returned as a dictionary
+    form.disposition The field 'content-disposition'; None if unspecified
+    form.disposition_options The options for 'content-disposition'
+    form.headers All of the HTTP headers returned as a dictionary
+
+    So, instead of writing above
+
+     name = form.getvalue('name')	 
+
+    I could have written
+
+     name = form['name'].value 
+
+use getfirst/getlist instead of getvalue
+
+cgiwrap: allows ordinary users to run their own CGI scripts a gateway that allows more secure user access to CGI programs on an HTTPd server than is provided by the http server itself. The primary function of CGIwrap is to make certain that any CGI script runs with the permissions of the user who installed it, and not those of the server. 
+
+#! /usr/local/bin/python
+
+NOTE: the above "/usr/local/bin/python" is NOT a mistake. It is
+intentionally NOT "/usr/bin/env python
+
+-----------------
+To translate a numeric error code to an error message, use os.strerror().
+strerror or strerror_r :Error numbers recognized by this implementation fall in the range 0 < errnum < sys_nerr.
+
+Programs that use the deprecated sys_errlist variable often fail to compile because they declare it inconsistently. 
+
+The message strings can be accessed directly using the external array sys_errlist. The external value sys_nerr contains a count of the messages in sys_errlist. The use of these variables is deprecated; strerror or strerror_r should be used instead.
+
+ther are platforms where strerror() will
+return NULL for unknown, e.g. negative error numbers.
+
+The following functions are thread safe: perror, strerror_r. The following
+    functions are not thread safe: strerror, hstrerror.
+
+-------------
+A piece of code is thread-safe if it can be safely invoked by multiple threads at the same time
+A computer program or subroutine is called reentrant if it can be interrupted in the middle of its execution and then safely called again before its previous invocations complete executing
+
+
+------------
+python -m CGIHTTPServer
+172.16.10.19
+shashi123
+------------------
+
+http://mail.python.org/pipermail/web-sig/2007-June/002677.html
+http://www.python.org/about/success/siena/
+
+TUTORIAL :
+http://docs.python.org/release/2.5.2/ref/ref.html
+http://www.tutorialspoint.com/python/python_cgi_programming.htm
+http://diveintopython.org/toc/index.html
+http://rgruet.free.fr/
+
+DISCUSSION :
+http://wiki.python.org/moin/CompLangPython
+
+COMMAND LINE :
+https://pythonconquerstheuniverse.wordpress.com/2010/07/25/command-line-syntax-some-basic-concepts/
+http://docs.python.org/library/argparse.html
+http://www.gnu.org/s/hello/manual/libc/Example-of-Getopt.html#Example-of-Getopt
+http://docs.python.org/library/getopt.html
+
+SPECIAL METHODS :
+http://diveintopython3.org/special-method-names.html
+
+PYTHON AND XML :
+http://oreilly.com/catalog/pythonxml/chapter/ch01.html
+
+ERROR LOGGING :
+http://docs.python.org/release/3.1.3/library/logging.html
+
+SYSTEM CALLS :
+http://ubuntuforums.org/archive/index.php/t-1452881.html
+http://bytes.com/topic/python/answers/21255-system-call-python
+http://stackoverflow.com/questions/89228/how-to-call-external-command-in-python
+http://stackoverflow.com/questions/3016369/catching-blocking-sigint-during-system-call
+
+CTYPES :
+http://sourceforge.net/projects/ctypes/files/
+http://web.archive.org/web/20080215031603/http://starship.python.net/crew/theller/wiki
+http://tungwaiyip.info/blog/2009/07/16/ctype_performance_benchmark
+http://sourceforge.net/mailarchive/forum.php?forum_name=ctypes-users
+http://stackoverflow.com/questions/3687762/use-of-ctypes-module
+http://stackoverflow.com/questions/4431329/python-ctypes-module-null-pointer-access-while-extending-pointer-array
+http://wiki.python.org/moin/ctypes
+http://starship.python.net/crew/theller/ctypes/reference.html
+http://blog.bstpierre.org/using-pythons-ctypes-to-make-system-calls
+http://docs.scipy.org/doc/numpy/user/c-info.python-as-glue.html
+http://starship.python.net/crew/theller/ctypes/tutorial.html
+
+Web / Server:
+http://www.linuxjournal.com/content/tech-tip-really-simple-http-server-python
+http://sites.google.com/site/usfcomputerscience/interest-rate-tutorial
+http://fragments.turtlemeat.com/pythonwebserver.php
+http://motomastyle.com/basic-server-monitoring-with-python/
+http://docs.python.org/py3k/howto/webservers.html
+http://docs.python.org/library/basehttpserver.html
+http://docs.python.org/library/simplehttpserver.html#module-SimpleHTTPServer
+http://docs.python.org/library/cgihttpserver.html#module-CGIHTTPServer
+http://wiki.python.org/moin/WebFrameworks
+
+CGI Programming:
+http://www.johnloomis.org/python/cgiserver.html
+http://www.python-forum.org/pythonforum/viewtopic.php?f=19&t=15051
+http://anh.cs.luc.edu/python/hands-on/handsonHtml/handson.html#x1-1180004
+http://stackoverflow.com/questions/715791/launching-a-py-python-script-from-within-a-cgi-script
+http://www.cs.virginia.edu/~lab2q/lesson_7/
+http://www.tutorialspoint.com/python/python_cgi_programming.htm
+http://pointlessprogramming.wordpress.com/2011/02/13/python-cgi-tutorial-1/
+http://webdesign.about.com/od/python/Python_and_Web_Development.htm
+http://www.wsgi.org/wsgi/Learn_WSGI
+http://stackoverflow.com/questions/5666048/how-to-serve-an-mp3-file-with-built-in-python-http-server
+http://www.python.org/doc/essays/ppt/sd99east/sld038.htm
+http://docs.python.org/library/wsgiref.html
+
+Python and HTML Processing:
+http://www.boddie.org.uk/python/HTML.html
+http://www.ehow.com/way_5571214_python-html-tutorial.html
+http://www.python.org/workshops/1995-12/papers/shprentz.html
+http://www.w3schools.com/html/html_forms.asp?pwd=gigkg
+
+
+HTML COLORS: http://web.njit.edu/~kevin/rgb.txt.html
+SERVERS : http://dir.yahoo.com/Computers_and_Internet/software/internet/world_wide_web/servers/
+	  http://www.apache.org/
+CGI : http://www.jmarshall.com/easy/cgi/
+      http://www.cs.virginia.edu/~lab2q/lesson_7/
+
+python : http://jimmyg.org/blog/2009/working-with-python-subprocess.html
+	 http://docs.python.org/library/subprocess.html
+	 http://pleac.sourceforge.net/pleac_python/cgiprogramming.html
+	 http://www.doughellmann.com/PyMOTW/subprocess/
+	 http://www.python-forum.org/pythonforum/viewtopic.php?f=19&t=17581
+	 http://www.cgl.ucsf.edu/Outreach/bmi280/slides/web_server.html
+	http://diveintopython3.org/special-method-names.html
+	http://docs.python.org/library/exceptions.html
+
+misc :  http://openbookproject.net/thinkcs/python/english2e/ch01.html
+	http://www.gnome.org/gnome-3/
+	http://www.saurdo.com/
+
+traceback :  http://docs.python.org/release/3.1.3/library/traceback.html
+	     http://www.doughellmann.com/PyMOTW/traceback/
+	     http://code.activestate.com/recipes/52215-get-more-information-from-tracebacks/
+
+cgitb : http://docs.python.org/release/3.1.3/library/cgitb.html
+	http://www.doughellmann.com/PyMOTW/cgitb/
+	http://pydoc.org/2.5.1/cgitb.html
+
+References : http://www.php2python.com/
+	     http://www.2wglobal.com/www/WEP/index.jsp
+
+files	: http://pleac.sourceforge.net/pleac_python/fileaccess.html
+
+SUBPROCESS : http://jimmyg.org/blog/2009/working-with-python-subprocess.html
+	     http://thraxil.org/users/anders/posts/2008/03/13/Subprocess-Hanging-PIPE-is-your-enemy/
+
+cgiutols : http://www.voidspace.org.uk/python/cgiutils.html
+	     
+----------------------
+Use the int function to convert string to int and the str function to convert int to string
+---------------------
+int(float(n)) converts 'n' from string to float, then from float to int.
+-----------------
+<stdio.h> :defines scanf() and printf()
+<stdlib.h>:defines rand()
+<time.h>  :defines time() and is needed for randomize()
+<conio.h> :defines clrscr() and getch()
+---------------
+use jquery for pagination ,,, it will really made ur work simple...
+-----------------
+web programming in Python technically uses CGI/FastCGI, a variety of Frameworks which will handle all the tricky communication with the web server for you. 
+Almost all of them also have ways of handling common web tasks like communicating with databases, and splitting up your code into the MVC Pattern.
+This can be overkill for small projects, but is definitely a must for anything over simple projects.
+
+A web application Framework in Python is much the same as using Rails for Ruby, or Hydrogen for PHP. It provides a collection of Modules to carry out common web programming tasks. Some popular Frameworks for Python are
+
+Django: Probably the most popular Framework, Django includes many of the features you will be familiar with from other Frameworks. It uses an MVC pattern, and is focussed on Rapid Application Development theories such as DRY (Don't repeat Yourself). It features a robust ORM and database abstraction layer, Various methods of Caching, an internal dispatcher, a smarty-like Templating engine and a basic web-server for testing. The developers claim it is similar to Rails, and it is used by several large scale websites. It requires Python version 2.3 or lower, making it incompatible with Python 3. This is one of the main reasons you may consider using Python 2 for a project.
+
+PYLONS*: A framework renknowned for being more flexible than Django, and for most of its major components being third-party modules, Pylons is a Python web framework which borrows features of Rails. The URL Dispatcher, for example, is a port of Rails 'Routes' solution, and the Framework also makes use of WebHelpers. Most components are replaceable, and new solutions can be plugged in to provide core functionality - for example SQLObject or SQLAlchemy can be used for Database Communication. Pylons has merged with another Framework (Repoze.BFG) and is in discussions with TurboGears to merge into one project called 'Pyramid'. It is therefore likely that Pyramid would be a better option for development than Pylons.
+
+Pyramid: A new development by the teams behind some of the most popular existing Python frameworks, the Pyramid framework is the successor of the Pylons framework, and is a combination of the aforementioned, and the Repoze.BFG framework. It contains all the flexibility of the Pylons framework, and will continue to be actively developed. It is, however, still in its relative infancy so for projects starting now, it might not be suitable. Definitely one to watch in the future though. 
+
+----------------
+
+shashi@shashi-PC:~$ xterm &	// generates a text window
+
+shashi@shashi-PC:~$ octave --s	// launch octave
+octave:1> plot(1:66)		// generates a graphics window
+
+shashi@shashi-PC:~$ ssh mwa@sat2					// asks for Password for this account and then switches to it
+shashi@shashi-PC:~$ rsync -avp mwa@sat2:~/digrec/analysis/pfb/c*.psc .	// remote sync accounts : 'shashi@shashi-PC' folder With mentioned folder of 'mwa@sat2'
+
+shashi@shashi-PC:~/PLOTS$ convert *.psc *.png 		// create .png files corresponding to all .psc files
+shashi@shashi-PC:~/PLOTS$ ls -ltrh *.png		// shows all .png files in that folder
+shashi@shashi-PC:~$ evince <filename> 			// launch file 
+
+^Z				// sends process to background
+shashi@shashi-PC:~/PLOTS$ top	// ???
+
+shashi@shashi-PC:~/Downloads/shashikant/project/www$ find ./plots -name '*.png'	  // searches for files in the directory 'plots' and its subdirectoires which end in .png
+
+
+
+
+
+
+
+======================================
+Because every function call returns something in Python (or throws an exception), None is returned. Then None can't be unpacked.
+
+===================
+NoneType usually means that the variable has not been declared, i.e. usually a typo on the name.
+TypeError: 'NoneType' object is not iterable : 
+You probably call some function that does not return any (or all of the) data.
+===================
+
+Python traceback module:::::::
+
+Traceback objects actually contain a great deal more information than the traceback module displays, however.
+traceback being displayed for an unhandled exception.
+
+------------
+#!/usr/bin/env python
+import sys, traceback
+
+def main():
+    l=[1,2,3,4]
+    print l[4]
+
+if __name__=="__main__":
+    try:
+        main()
+    except:
+        print "Trigger Exception, traceback info forward to log file."
+        traceback.print_exc(file=open("errlog.txt","a"))
+        sys.exit(1)
+------------
+import logging
+
+…
+
+#set your logger in __init__ or so, check out logging how to do
+setLogger(logging.INFO, “app.log”)
+log = logging.getLogger(”myclass”)
+…
+try:
+…
+except Exception:
+log.error(”Crash”, exc_info=1)
+
+finally:
+#be nice
+
+This will log the text and then the trace log by your logger. Depend on how you set your logger, it could end up in multiple files, in console in db.. whatever you want to. In my case, it’s end up on the console (in debugger) and in my log file as:
+
+11-21 01:10 myclass ERROR Crash
+Traceback (most recent call last):
+File “/mycodepath/myclass.py”, line 84, in mainLoop
+print l[2]
+IndexError: list index out of range
+
+if you click on the line in the debugger (eg. eclipse) you can get to the location of the crash..
+---------------
+When an exception is thrown I typically want to wrap it in another exception that adds more information, while still showing the full stack trace.
+pass the traceback as the third argument to raise.
+
+import sys
+class MyException(Exception): pass
+
+try:
+    raise TypeError("test")
+except TypeError, e:
+    raise MyException(), None, sys.exc_info()[2]
+
+Always do this when catching one exception and re-raising another.
+
+------------
+
+To put the traceback in a string, use the StringIO module:
+Example: Using the traceback module to copy a traceback to a string
+
+# File: traceback-example-2.py
+
+import traceback
+import StringIO
+
+try:
+    raise IOError, "an i/o error occurred"
+except:
+    fp = StringIO.StringIO()
+    traceback.print_exc(file=fp)
+    message = fp.getvalue()
+
+    print "failure! the error was:", repr(message)
+
+========================================
+cgitb module :::::::::
+
+For a nice exceptions report there is the cgitb module.  It will show a trace-back inside a context.  The default output is sent to standard output as HTML:
+
+The handler() method can be used to handle only the catched exceptions.
+
+Warning: These techniques expose information that can be used by an attacker.  Use it only while developing/debugging.  Once in production disable it. 
+
+-------------------
+
+
+
+
+import re
+s="<h"
+if re.search(r"[^\.\w\s:-]+" , s) == None:
+    print 'allow'
+
+
+
+
+
+
+
+
+--------------
+Command to shell should have only alphanumeric characters (alphabets,underscores,numbers), dashes,  periods, colons, spaces.
+search() return None if no match can be found
+
+import re
+if re.search(r"[^\.\w:-]+" , s) :
+    print 'ok'
+...
+
+if re.match("^[\w\d_-]+$", my_little_string):
+    # do something here
+This solution will match strings that are of zero length.
+Use + instead of * to make it match strings of 1 or more characters
+
+
+\w includes \d and _
+
+isvalid = re.match(r'[\w-]*$', astr) -- empty strings are valid.
+
+
+
+
+\d
+    Matches any decimal digit; this is equivalent to the class [0-9].
+\D
+    Matches any non-digit character; this is equivalent to the class [^0-9].
+\s
+    Matches any whitespace character; this is equivalent to the class [ \t\n\r\f\v].
+\S
+    Matches any non-whitespace character; this is equivalent to the class [^ \t\n\r\f\v].
+\w
+    Matches any alphanumeric character; this is equivalent to the class [a-zA-Z0-9_].
+\W
+    Matches any non-alphanumeric character; this is equivalent to the class [^a-zA-Z0-9_].
+
+These sequences can be included inside a character class. 
+
+
+
+Regular expressions :
+    ^  matches the beginning of a string.
+       match the characters not listed within the class by including a '^' as the first character of the class
+       '^' outside a character class will simply match the '^' character
+    $  matches the end of a string.
+       inside a character class it’s stripped of its special nature.[$] will match the character '$'
+    \b matches a word boundary.
+    \d matches any numeric digit.
+    \D matches any non-numeric character.
+    x? matches an optional x character (in other words, it matches an x zero or one times).
+    x* matches x zero or more times.
+    x+ matches x one or more times.
+    x{n,m} matches an x character at least n times, but not more than m times.
+    (a|b|c) matches either a or b or c.
+    (x) in general is a remembered group. You can get the value of what matched by using the groups() method of the object returned by re.search.
+    \s for a whitespace character
+
+
+caret symbol (^) means to match the zero-length pattern for line beginnings. But if it is used at the beginning of a character class everything not included in the listed character set is matched.
+
+The plus-sign ("+") means "one or more times" and the question-mark ("?") means "zero or one times.
+
+-	: a range of characters can be indicated by giving two characters and separating them by a '-'
+
+
+Complete list of the metacharacters:	. ^ $ * + ? { } [ ] \ | ( )
+Metacharacters are not active inside classes...
+[]	: specify a a character class (set of characters that you wish to match) 
+\	: used to escape all the metacharacters so you can still match them in patterns
+.	: matches anything except a newline character
+*	: specifies that the previous character can be matched zero or more times, instead of exactly once.
+?	: matches either once or zero times; you can think of it as marking something as being optional. For example, home-?brew matches either homebrew or home-brew.
+{m,n}	: m and n are decimal integers. This qualifier means there must be at least m repetitions, and at most n. For example, a/{1,3}b will match a/b, a//b, and a///b.
+	  Omitting m is interpreted as a lower limit of 0, while omitting n results in an upper bound of infinity — (actually 2-billion limit )
+	  Omitting m is interpreted as a lower limit of 0, while omitting n results in an upper bound of infinity — actually, the upper bound is the 2-billion limit 
+
+
+The Backslash Plague
+regular expressions use the backslash character ('\') to indicate special forms or to allow special characters to be used without invoking their special meaning. This conflicts with Python’s usage of the same character for the same purpose in string literals.
+backslashes are not handled in any special way in a string literal prefixed with 'r', so r"\n" is a two-character string containing '\' and 'n', while "\n" is a one-character string containing a newline. Regular expressions will often be written in Python code using this raw string notation.
+
+
+
+match() and search() return None if no match can be found : Use re.search() instead
+sub()
+
+---------------
+Use 'raw_input()' instead of 'input()'
+Always check input to os.system(), os.popen() or os.exec*() calls.
+Always escape user input before printing it to a web page or using it in a SQL query.	Use 'cgi.escape()' to escape HTML. See your database documentation to escape SQL queries. 
+
+
+It's very easy to just type in open ended exceptions without bothering to look up which errors you are trapping like this:
+
+try:
+    someVar = int(input)
+    print 'Is an integer'
+except:
+    print 'Not an integer'
+
+DO NOT DO THIS. Python will let you, but since you are now trapping all exceptions debugging will be a nightmare for you if anything breaks. 
+
+
+--------------------------------------------------
+def filter(inStr, allowed):
+    outStr = ''
+    for c in inStr:
+        if c in allowed:
+            outStr += c
+    return outStr
+
+We could call it like this:
+
+>>>filter('250-(555)-12-12', string.digits)
+'2505551212'
+
+
+
+
+Built-In Exceptions
+
+Exception
+         Root class for all exceptions
+    SystemExit
+         On 'sys.exit()'
+    StandardError
+                 Base class for all built-in exceptions; derived from Exception root class.
+        ArithmeticError
+                 Base class for OverflowError, ZeroDivisionError, FloatingPointError
+            FloatingPointError
+                       When a floating point operation fails.
+            OverflowError
+
+                            On excessively large arithmetic operation
+            ZeroDivisionError
+                  On division or modulo operation with 0 as 2nd arg
+
+            AssertionError
+                When an assert statement fails.
+        AttributeError
+
+                    On attribute reference or assignment failure
+        EnvironmentError    [new in 1.5.2]
+                On error outside Python; error arg tuple is (errno, errMsg...)
+            IOError    [changed in 1.5.2]
+               I/O-related operation failure
+            OSError    [new in 1.5.2]
+               used by the os module's os.error exception.
+        EOFError
+
+                    Immediate end-of-file hit by input() or raw_input()
+        ImportError
+         On failure of `import' to find module or name
+        KeyboardInterrupt
+         On user entry of the interrupt key (often `Control-C')
+        LookupError
+                base class for IndexError, KeyError
+            IndexError
+                 On out-of-range sequence subscript
+            KeyError
+                 On reference to a non-existent mapping (dict) key
+        MemoryError
+         On recoverable memory exhaustion
+        NameError
+         On failure to find a local or global (unqualified) name
+        RuntimeError
+         Obsolete catch-all; define a suitable error instead
+
+          NotImplementedError   [new in 1.5.2]
+                On method not implemented
+        SyntaxError
+         On parser encountering a syntax error
+
+       IndentationError
+           On parser encountering an indentation syntax error
+
+       TabError
+           On parser encountering an indentation syntax error
+
+        SystemError
+         On non-fatal interpreter error - bug - report it
+        TypeError
+         On passing inappropriate type to built-in op or func
+        ValueError
+         On arg error not covered by TypeError or more precise 
+
+
+getpass.getpass([prompt[, stream]])
+
+    Prompt the user for a password without echoing.
+
+
+
+
+
+
+
+
+
+
+=================================
+CREATING REMOTE CONNECTION TO A COMPUTER :
+shashi@shashi-PC:~$ ifconfig
+eth0      Link encap:Ethernet  HWaddr a4:ba:db:c8:ef:4a  
+          inet addr:172.16.16.67  Bcast:172.16.255.255  Mask:255.255.0.0
+          inet6 addr: fe80::a6ba:dbff:fec8:ef4a/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1532042 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:84530 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:243306562 (243.3 MB)  TX bytes:22897182 (22.8 MB)
+          Interrupt:45 Base address:0xc000 
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:19131 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:19131 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:5626049 (5.6 MB)  TX bytes:5626049 (5.6 MB)
+
+shashi@shashi-PC:~$ ssh -X priyanka@172.16.4.11
+priyanka@172.16.4.11's password: 
+Linux aquila 2.6.22-14-generic #1 SMP Tue Dec 18 08:02:57 UTC 2007 i686
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+Last login: Sat Jun 18 12:20:14 2011 from shashi-pc.local
+priyanka@aquila:~$ ls
+desh     distance1.c~  Examples  Music     priyanka  Templates
+Desktop  Documents     marks.c~  Pictures  Public    Videos
+priyanka@aquila:~$ ooffice
+priyanka@aquila:~$ logout
+Connection to 172.16.4.11 closed.
+shashi@shashi-PC:~$ 
+
+-----------------------
+returncode is not set by the
+child process--ever. return code starts off with a default value of
+None, and it remains None until you call a method in the subprocess
+module, like poll() or wait(). Those methods set and then return
+returncode. As a result, if you want to know what the status of the
+child process is, you have to call either poll() or wait()
+=================================
+There is an easy way to execute a sequence of shell commands (one immediately after another):
+
+Supply the shell=True argument in the subprocess.Popen call, and then :
+
+IN *NIX :
+---------
+    *1) separate the commands with:
+           ; if running under a *nix shell (bash, ash, sh, ksh, csh, tcsh, zsh etc). Example:
+
+"command1; command2; command3"
+
+IN WINDOWS :
+------------
+    *1) separate the commands with:
+           & or \n if running under the cmd.exe of Windows. Example:
+
+"""
+command1
+command2
+command3
+"""
+    *2) Create a temporary ".BAT" file, and provide this to subprocess.Popen
+
+===========================
+
+Common problems and solutions
+
+    * Most HTTP servers buffer the output from CGI scripts until the script is completed. This means that it is not possible to display a progress report on the client’s display while the script is running.
+    * Check the installation instructions above.
+    * Check the HTTP server’s log files. (tail -f logfile in a separate window may be useful!)
+    * Always check a script for syntax errors first, by doing something like python script.py.
+    * If your script does not have any syntax errors, try adding import cgitb; cgitb.enable() to the top of the script.
+    * When invoking external programs, make sure they can be found. Usually, this means using absolute path names — PATH is usually not set to a very useful value in a CGI script.
+    * When reading or writing external files, make sure they can be read or written by the userid under which your CGI script will be running: this is typically the userid under which the web server is running, or some explicitly specified userid for a web server’s suexec feature.
+    * Don’t try to give a CGI script a set-uid mode. This doesn’t work on most systems, and is a security liability as well.
+
+      
+-------------------
+C : http://einstein.drexel.edu/courses/Comp_Phys/General/C_basics/
+
+< stdio.h>  -> defining I/O routines
+< ctype.h>  -> defining character manipulation routines
+< string.h> -> defining string manipulation routines
+< math.h>   -> defining mathematical routines
+< stdlib.h> -> defining number conversion, storage allocation 
+              	and similar tasks
+< stdarg.h> -> defining libraries to handle routines with variable 
+              	numbers of arguments
+< time.h>   -> defining time-manipulation routines
+
+In addition, the following header files exist:
+
+< assert.h> -> defining diagnostic routines
+< setjmp.h> -> defining non-local function calls
+< signal.h> -> defining signal handlers
+< limits.h> -> defining constants of the int type
+< float.h>  -> defining constants of the float type
+
+
+DATA CONVERSION
+The following functions convert between data types.
+
+	atof()		converts an ascii character array to a float
+	atoi()		converts an ascii character array to an integer
+	itoa()		converts an integer to a character array
+
+Example
+
+	/* convert a string to an integer */
+	#include <stdio.h>
+	#include <stdlib.h>
+
+	char string[] = "1234";
+
+	main()
+	{
+		int sum;
+		sum = atoi( string );
+		printf("Sum = %d\n", sum );
+	}
+
+
+/* convert an integer to a string */
+	#include <stdio.h>
+	#include <stdlib.h>
+
+	main()
+	{
+		int sum;
+		char buff[20];
+
+		printf("Enter in an integer ");
+		scanf(" %d", &sum );
+		printf( "As a string it is %s\n", itoa( sum, buff, 10 ) );
+	}
+
+Note that itoa() takes three parameters,
+
+    * the integer to b converted
+    * a character buffer into which the resultant string is stored
+    * a radix value (10=decimal,16=hexadecimal)
+
+In addition, itoa() returns a pointer to the resultant string. 
+
+--------------------
+Exit status or return code of a process (On DOS, this may be referred to as an errorlevel) :::
+
+In both standard C and C++, main() must return int ( "void main" is non-standard ).
+
+Value returned by any 'Unix' command when it returns control to its parent process should, for maximum portability, always fall in the range [0,255]
+
+0, EXIT_SUCCESS and EXIT_FAILURE have (sort of) specified meanings.
+Other numbers can be used, but these are treated modulo 256, so exit -10 is equivalent to exit 246, and exit 257 is equivalent to exit 1.
+GNU grep returns 0 on success; failure is normally indicated with a non-zero exit-code. This value can indicate different reasons for failure.
+(For example, 1 if no matches were found, and 2 for other errors (syntax errors, nonexistant input files, etc).)
+
+Returning negative values is a very bad idea -- it can conflict with additional status information bundled in the return code by the OS.
+These can be used within a shell script to change the flow of execution depending on the success or failure of commands executed.
+
+---------------------------call c program from python:::::::::::::::::::::::
+
+What Happens When you Execute a Command?---
+
+When you click on the Terminal icon on your Desktop you are loading a program which in turn loads a shell. The commands you write are not executed directly by the kernel but are first interpreted by the shell.
+
+    Command      (eg. `ls -l')
+       ↓
+Terminal Program (eg. `gnome-terminal')
+       ↓
+     Shell       (eg Bash)
+       ↓
+     Kernel      (eg. Linux 2.6.24)
+
+Streams---
+
+In UNIX and Linux, there are three I/O channels known as streams which connect a computer program with its environment such as a text terminal (eg gnome-terminal' running Bash) or another computer program (eg a Python program using the ``subprocess` module). 
+These I/O channels are :
+
+Handle(file descriptors) 	Name 	Description
+
+0			 	stdin 	Standard input
+1 				stdout 	Standard output
+2 				stderr 	Standard error
+
+=================== http://docs.python.org/library/subprocess.html============
+
+class subprocess.Popen(args, bufsize=0, executable=None, stdin=None, stdout=None, stderr=None, preexec_fn=None, close_fds=False, shell=False, cwd=None, env=None, universal_newlines=False, startupinfo=None, creationflags=0)
+
+args should be a string, or a sequence of program arguments
+
+shell=True: If args is a string, it specifies the command string to execute through the shell.If args is a sequence, the first item specifies the command string, and any additional items will be treated as additional arguments to the shell itself.se of shell=True is strongly discouraged in cases where the command string is constructed from external input.
+
+shell=False does not suffer from this vulnerability
+shell=False (default) : work if the program is being given no arguments
+
+stdin, stdout and stderr specify the executed programs’ standard input, standard output and standard error file handles, respectively. Valid values are PIPE, an existing file descriptor (a positive integer), an existing file object, and None. PIPE indicates that a new pipe to the child should be created. With None, no redirection will occur; the child’s file handles will be inherited from the parent. Additionally, stderr can be STDOUT, which indicates that the stderr data from the applications should be captured into the same file handle as for stdout.
+
+If close_fds is true, all file descriptors except 0, 1 and 2 will be closed before the child process is executed.(Unix only)
+
+If universal_newlines is True, the file objects stdout and stderr are opened as text files, but lines may be terminated by any of '\n'
+
+-----------------
+the newlines attribute of the file objects stdout, stdin and stderr are not updated by the communicate() method.
+
+----------
+
+Noteworthy: None is the `nil' object; Ellipsis represents `...' in slices.
+-------------
+
+To translate a numeric error code to an error message, use os.strerror(<error_code>).
+----------------
+
+shlex errors
+
+passing all arguments through an array (which will be used for an exec()-style call internally) and not as an argument string evaluated by a shell is very secure as injection of shell commands is impossible.
+
+-----------------
+
+communicate() :use communicate() rather than these to avoid deadlocks : .stdin.write, .stdout.read, .stderr.read, wait(), call().
+	       indirectly sets child return code,( set by poll(), wait() and call() )
+	     
+------------------
+
+to send data to the process’s stdin, you need to create the Popen object with stdin=PIPE. Similarly, to get anything other than None in the result tuple, you need to give stdout=PIPE and/or stderr=PIPE too.
+------------
+
+Popen.returncode
+    The child return code attribute, set by poll() and wait() (and indirectly by communicate()). A None value indicates that the process hasn’t terminated yet.
+    A negative value -N indicates that the child was terminated by signal N (Unix only).
+---------------
+
+subprocess.check_call(*popenargs, **kwargs)
+
+    Run command with arguments. Wait for command to complete. If the exit code was zero then return, otherwise raise CalledProcessError. The CalledProcessError object will have the return code in the returncode attribute.
+
+    The arguments are the same as for the Popen constructor. 
+--------------
+subprocess.check_output(*popenargs, **kwargs)
+
+    Run command with arguments and return its output as a byte string.
+
+    If the exit code was non-zero it raises a CalledProcessError. The CalledProcessError object will have the return code in the returncode attribute and output in the output attribute.
+
+    The arguments are the same as for the Popen constructor.
+
+    The stdout argument is not allowed as it is used internally. To capture standard error in the result, use stderr=subprocess.STDOUT:
+---------------------
+
+it’s easier to look at the returncode attribute than the exit status.
+Note that if you want to send data to the process’s stdin, you need to create the Popen object with stdin=PIPE. Similarly, to get anything other than None in the result tuple, you need to give stdout=PIPE and/or stderr=PIPE too.
+-------------------
+
+cgi.escape(s[, quote])
+    Convert the characters '&', '<' and '>' in string s to HTML-safe sequences
+    If the optional flag quote is true, the quotation mark character (") is also translated; this helps for inclusion in an HTML attribute value delimited by double quotes, as in <a href="...">. Note that single quotes are never translated.
+If the value to be quoted might include single- or double-quote characters, or both, consider using the quoteattr() function in the xml.sax.saxutils module instead.
+=============================
+
+Unix shell commands:::  	// file extension does not matter (can be anything: .n45g0v3 , .txt, .jp239 etc. etc. )
+
+shashi@shashi-PC:~/Downloads/shashikant/test_prog$ tar -cvf backup_of_www_as_on_16jun2011.tar www	// create tar file of folder www in folder test__prog
+shashi@shashi-PC:~/Downloads/shashikant/test_prog$ ls -ltr						// show contents
+shashi@shashi-PC:~/Downloads/shashikant/test_prog$ tar -tvf backup_of_www_as_on_16jun2011.tar 		// show all files
+
+
+
+
+-----------------------
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ # This is a comment...;.][l'	// comment
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ octave				// launch octave
+
+octave:1> 										// octave launched
+octave:1> plot(1:10)									// creates a plot y = x
+octave:2> print("myplot.png","-dpng")							// saves the plot as myplot.png image file
+octave:3> exit										// exit to shell
+
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ evince myplot.png 		// pops up mentioned .png image
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ gedit trialplot.sh &		// opens a gedit file 'trialplot.sh'-separate from present terminal(due to &) 
+[1] 9551
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ octave				// launch octave
+
+octave:1> myplot									// octave pops up myplot.png			
+octave:2> exit										// octave closes file 'myplot.png' and exits
+
+[1]+  Done                    gedit trialplot.sh
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ octave --s myplot.m		// runs myplot.m in octave which generates the image
+
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ octave myplot.m			// runs myplot.m in octave which generates the image
+GNU Octave, version 3.2.4								// removal of --s causes generation of this intro
+Copyright (C) 2009 John W. Eaton and others.
+This is free software; see the source code for copying conditions.
+There is ABSOLUTELY NO WARRANTY; not even for MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  For details, type `warranty'.
+
+Octave was configured for "i686-pc-linux-gnu".
+
+Additional information about Octave is available at http://www.octave.org.
+
+Please contribute if you find this software useful.
+For more information, visit http://www.octave.org/help-wanted.html
+
+Report bugs to <bug@octave.org> (but first, please read
+http://www.octave.org/bugs.html to learn how to write a helpful report).
+
+For information about changes from previous versions, type `news'.
+
+
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ gedit call_myplot.sh		// opens a gedit file
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ chmod +x call_myplot.sh		// makes file executable
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ ./call_myplot.sh 		// executes file
+
+No. of arguments given: 3 
+inf
+
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ pico c_programs_list.txt		// opens file in pico editor
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ rm call_myplot.sh 		// deletes file
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ cp test call_myplot		// copies pre-existent <first_file> in <second_file>
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ diff test call_myplot		// checks whether files are different
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ mv call_myplot call_myplot.sh	// renames <first_file> as <second_file>
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ ./call_myplot.sh 		// file copied from executable file 'test' so no need of chmod
+
+No. of arguments given: 3 
+inf
+
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ gcc test.c			// compiles 'test.c' and creates its executable as 'a.out' (named by default) 
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ gcc test.c -o 123.12345		// compiles 'test.c' and creates its executable as file '123.12345' 
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ pico 567.0987654			// opens file in pico editor
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ ls -ltrh
+total 132K
+-rw-r--r-- 1 shashi shashi  426 2011-06-13 16:05 database_template.html			// displays all files/folders in www
+-rwxr-xr-x 1 shashi shashi 7.0K 2011-06-15 17:29 sum
+-rwxr-xr-x 1 shashi shashi 7.0K 2011-06-15 17:30 basicCmdLine
+-rwxr-xr-x 1 shashi shashi 7.2K 2011-06-15 17:31 table
+-rw-r--r-- 1 shashi shashi  376 2011-06-15 18:28 test.html
+drwxr-xr-x 2 shashi shashi 4.0K 2011-06-15 23:11 c_programs
+-rw-r--r-- 1 shashi shashi 1.1K 2011-06-15 23:34 submission_template.html
+-rwxr-xr-x 1 shashi shashi 7.0K 2011-06-16 14:15 test
+-rw-r--r-- 1 shashi shashi  167 2011-06-16 17:01 test.c
+-rw-r--r-- 1 shashi shashi   40 2011-06-16 17:45 myplot.m
+drwxr-xr-x 2 shashi shashi 4.0K 2011-06-16 18:07 simulation
+-rw-r--r-- 1 shashi shashi  12K 2011-06-16 18:21 test.txt
+-rw-r--r-- 1 shashi shashi  19K 2011-06-16 18:32 myplot.png
+-rw-r--r-- 1 shashi shashi  620 2011-06-16 18:34 database_log.txt
+drwxr-xr-x 2 shashi shashi 4.0K 2011-06-16 18:44 cgi-bin
+-rwxr-xr-x 1 shashi shashi   32 2011-06-16 18:53 call_myplot.sh
+-rwxr-xr-x 1 shashi shashi 7.0K 2011-06-16 19:00 callmyplot
+-rw-r--r-- 1 shashi shashi  133 2011-06-16 19:04 c_programs_list.txt			// note the file attributes '-rw-r--r--' (not executable)
+-rwxr-xr-x 1 shashi shashi 7.0K 2011-06-16 19:15 a.out					// note the file attributes '-rwxr-xr-x' (executable)
+-rwxr-xr-x 1 shashi shashi 7.0K 2011-06-16 19:16 123.12345				// note the file attributes '-rwxr-xr-x' (executable)
+-rw-r--r-- 1 shashi shashi   84 2011-06-16 19:17 567.0987654				// note the file attributes '-rw-r--r--' (not executable)
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ ./a.out 1 			// executes file
+
+No. of arguments given: 2
+inf
+
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ ./123.12345 a b 			// executes file
+
+No. of arguments given: 3 
+inf
+
+
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ chmod +x 567.0987654 		// making file executable
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ ls -ltrh
+total 136K
+-rw-r--r-- 1 shashi shashi  426 2011-06-13 16:05 database_template.html
+-rwxr-xr-x 1 shashi shashi 7.0K 2011-06-15 17:29 sum
+-rwxr-xr-x 1 shashi shashi 7.0K 2011-06-15 17:30 basicCmdLine
+-rwxr-xr-x 1 shashi shashi 7.2K 2011-06-15 17:31 table
+-rw-r--r-- 1 shashi shashi  376 2011-06-15 18:28 test.html
+drwxr-xr-x 2 shashi shashi 4.0K 2011-06-15 23:11 c_programs
+-rw-r--r-- 1 shashi shashi 1.1K 2011-06-15 23:34 submission_template.html
+-rwxr-xr-x 1 shashi shashi 7.0K 2011-06-16 14:15 test
+-rw-r--r-- 1 shashi shashi  167 2011-06-16 17:01 test.c
+-rw-r--r-- 1 shashi shashi   40 2011-06-16 17:45 myplot.m
+drwxr-xr-x 2 shashi shashi 4.0K 2011-06-16 18:07 simulation
+-rw-r--r-- 1 shashi shashi  12K 2011-06-16 18:21 test.txt
+-rw-r--r-- 1 shashi shashi  19K 2011-06-16 18:32 myplot.png
+-rw-r--r-- 1 shashi shashi  620 2011-06-16 18:34 database_log.txt
+drwxr-xr-x 2 shashi shashi 4.0K 2011-06-16 18:44 cgi-bin
+-rwxr-xr-x 1 shashi shashi   32 2011-06-16 18:53 call_myplot.sh
+-rwxr-xr-x 1 shashi shashi 7.0K 2011-06-16 19:00 callmyplot
+-rw-r--r-- 1 shashi shashi  133 2011-06-16 19:04 c_programs_list.txt
+-rwxr-xr-x 1 shashi shashi 7.0K 2011-06-16 19:15 a.out
+-rwxr-xr-x 1 shashi shashi 7.0K 2011-06-16 19:16 123.12345
+-rwxr-xr-x 1 shashi shashi   84 2011-06-16 19:17 567.0987654				// note the file attributes '-rwxr-xr--x--' ( executable)
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ cat ./567.0987654 		// shows contents of file
+echo "hello I am inside a shell"
+date
+echo "done"
+echo "------------"
+./test a b e
+
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ ./567.0987654 			// executes file
+hello I am inside a shell
+Thu Jun 16 19:19:06 IST 2011
+done
+------------
+
+No. of arguments given: 4 
+inf
+
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ pico 567.0987654			// opens file in pico editor--> (where we modify it to print an image also)
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ cat ./567.0987654		// shows contents of file
+echo "hello I am inside a shell"
+date
+echo "done"
+echo "------------"
+./test a b e
+octave --s myplot.m
+echo "----plot file created----"
+
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ ./567.0987654			// executes file
+hello I am inside a shell								// output (till the end)
+Thu Jun 16 23:00:36 IST 2011
+done
+------------
+
+No. of arguments given: 4 
+inf
+											// generates image at this point of execution
+----plot file created----
+
+
+shashi@shashi-PC:~/Downloads/shashikant/test_prog/www$ echo $?				// shows value returned by last process ( use 'echo %errorlevel%' in Windows)
+0
+
+shashi@shashi-PC:~/Downloads/shashikant/project$ rsync -avp <filename> mwa@sat2:~/<directoryname>/.		// copies shashi's file to mwa's directory
+mwa@sat2's password: 
+building file list ... done
+www_as_on_25Jun11_1500hrs.tar
+
+sent 84746488 bytes  received 42 bytes  8071098.10 bytes/sec
+total size is 84736000  speedup is 1.00
+
+
+shashi@shashi-PC:~/Downloads/shashikant/project$ ssh mwa@sat2 ls digrec -la		// shows files with attributes (due to -la) in digrec directory under mwa@sat2
+mwa@sat2's password: < password >
+total 84100
+drwxr-xr-x 13 mwa  mwa      4096 2011-06-25 15:04 .
+drwxr-xr-x 40 mwa  mwa      4096 2011-06-25 15:02 ..
+-rw-r--r--  1 root mwa     10990 2011-06-13 07:57 adfbdecodepar.txt
+drwxr-xr-x  4 mwa  mwa      4096 2011-06-17 20:55 analysis
+drwsr-sr-x  3 mwa  mwa      4096 2011-05-26 23:18 bin
+-rw-r--r--  1 mwa  mwa    901120 2011-05-16 11:20 digrec_sh_from_sat2.tar
+drwxr-xr-x  2 mwa  mwa      4096 2011-06-03 12:19 doc
+-rw-r--r--  1 mwa  mwa     40404 2011-02-15 11:56 fft_of_raw_adcvolt_ch9_ch11_verC_ADC.pdf
+drwxr-xr-x  4 mwa  mwa      4096 2011-05-26 22:13 fpgabin
+drwxr-xr-x  2 mwa  mwa      4096 2011-02-28 19:49 misc
+-rwxr-xr-x  1 mwa  mwa     39813 2011-04-11 13:43 ppdcheck
+drwxr-xr-x  3 mwa  mwa      4096 2011-04-11 13:58 ppd_reqd
+drwxr-xr-x  3 root root     4096 2011-04-11 12:33 ppd_reqd_backup_11apr11
+-rw-------  1 mwa  mwa     41549 2011-05-14 16:35 selfs_4000integrations_input1_from_tile_14may2011.pdf
+drwxr-xr-x  2 mwa  mwa     12288 2011-06-24 15:31 sh
+drwxr-xr-x  2 mwa  mwa      4096 2011-05-27 00:30 source_chksum
+drwxr-xr-x  2 mwa  mwa      4096 2011-06-08 04:32 svn
+-rw-r--r--  1 mwa  mwa     32999 2011-02-15 11:56 time_seq__of_raw_adcvolt_ch9_ch11_verC_ADC.pdf
+drwxr-xr-x  4 mwa  mwa      4096 2011-06-19 22:37 www
+-rw-r--r--  1 mwa  mwa    143360 2011-06-19 20:53 www_as_on_18Jun2011.tar
+-rw-r--r--  1 mwa  mwa  84736000 2011-06-24 23:33 www_as_on_25Jun11_1500hrs.tar
+
+=======================================================
+SYSTEM TIME	USER	PROGRAM		PARAMETER(S)	DELAY	ITERATION(S)	RESULT
+
+headingList = list([item for item in list(heading.split("	")) if item!='']) 
+
+----------
+
+form = cgi.FieldStorage()
+
+try:
+    if form["answer"].value == str(answer):
+        print "<br><b>Good</b>"
+    else:
+        print "<br><b>Wrong</b>"
+

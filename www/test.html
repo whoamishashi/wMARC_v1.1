@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+  <meta content="text/html;charset=ISO-8859-1" http-equiv="Content-Type">
+  <title>Form Template</title>
+</head>
+
+<body>
+
+<h1>Title :</H1>
+
+<form action="(URL)" method="get" enctype="multipart/form-data" id=form1 name=form1>
+
+<p>
+<STRONG>List of Programs&nbsp;:</STRONG>&nbsp; 
+<select name="dropdown" style="WIDTH: 138px">
+<option value="" selected>--select a program--</OPTION>
+<option value="Program1">Add</OPTION>
+<option value="Program2">Subtract</OPTION>
+<option value="Program3">Multiply</OPTION>
+</SELECT>
+</P>
+
+<p>
+<STRONG>Amount of Delay&nbsp;:</STRONG>&nbsp; 
+<select name="dropdown" style="WIDTH: 138px">
+<option value="" selected>--in seconds--</OPTION>
+<option value="Program1">5 seconds</OPTION>
+<option value="Program2">10 seconds</OPTION>
+</SELECT>
+</P>
+
+<p>
+<input type="submit" value="Submit" id=submit3 name=submit3 style="LEFT: 243px; TOP: 111px"></P>
+
+<p><STRONG><FONT 
+size=4>RESULT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT 
+size=3>&nbsp;&nbsp;&nbsp;&nbsp; :</FONT></FONT></STRONG>&nbsp; Success&nbsp;/ 
+Errors detected</P>
+
+<hr>
+
+<table width="750" border="0">
+<tr>
+  <th><h2><u>Output</U><h2></H2></H2></TH>
+  <th><h2><u>Simulation</U><h2></H2></H2></TH></TR>
+<tr>
+  <td align="left" valign="top" style="WIDTH: 400px; HEIGHT: 300px">
+    <p><code>This is computer 
+      output</CODE></P></TD>
+  
+  <td align="middle" valign="top" style="WIDTH: 400px; HEIGHT: 300px">
+    <p>
+	A moving image:<br>
+	<img src="/hackanm.gif" alt="Computer man" width="48" height="48"> 
+</P></TD></TR></TABLE>--------------------------------------<BR>
+
+
+
+----------------------------------------<BR>
+
+<p><FONT size=3>Text boxes 
+:</FONT></P>Program1:<input maxlength="60" size="30" value="Enter parameter1" name ="yourName"><input maxlength="60" size="30" value="Enter parameter2" name ="yourName">&nbsp;<input maxlength="60" size="30" value="Enter parameter3" name ="yourName">
+
+  <br>
+
+  Program2:<input maxlength="60" size="30" value="Enter parameter1" name ="yourName"><input maxlength="60" size="30" value="Enter parameter2" name ="yourName">&nbsp;<input maxlength="60" size="30" value="Enter parameter3" name ="yourName">
+
+  <p><span style="FONT-WEIGHT: bold">Radio Buttons</SPAN>: &nbsp;In a browser, only the <span style="FONT-STYLE: italic">latest</SPAN> clicked radio 
+button is selected </P>
+
+  <p>Color&nbsp;:<br>
+
+Red:<input value="red" name="color" type="radio"><br>
+
+Blue:<input value="blue" name="color" type="radio"><br>
+
+Green:<input value="green" checked name="color" type="radio"><br></P>
+
+<br>
+<p><span style="FONT-WEIGHT: bold">Dropdown List</SPAN>: 
+<select name="dropdown">
+<option value="Maths" selected>Maths</OPTION>
+<option value="Physics">Physics</OPTION></SELECT>
+<input type="submit" value="Submit" id=submit1 name=submit1>
+
+  <p><span style="FONT-WEIGHT: bold">Check boxes</SPAN>: when you want any number of 
+simultaneous check allowed (unlike radio buttons). </P>
+
+
+  <p>Attractive:<input value="v1" checked name="vanity" type="checkbox"><br>
+
+Rich:<input value="v2" checked name="vanity" type="checkbox"><br>
+
+Famous:<input value="v3" checked name="vanity" type="checkbox"><br></P>
+
+  <p><span style="FONT-WEIGHT: bold">Submit button</SPAN>: <input value="Submit" type="submit" style="LEFT: 109px; TOP: 597px" id=submit2 name=submit2> 
+&nbsp;<br></P>
+
+  <p>A reset button is optional.&nbsp; It tosses out all 
+changes made by the user and reverts to the starting values for all 
+fields.</P>&nbsp; <input type="reset" value=Reset id=reset1 name=reset1>
+  <br>
+
+  <p>A
+<span style="FONT-WEIGHT: bold">hidden field</SPAN> returns a specified value, but is 
+neither seen nor editable by the browser user. &nbsp;There is a hidden field at 
+the bottom of this form. &nbsp;Komposer shows it as a yellow rectangle saying 
+'INPUT'. &nbsp;You can double-click on it to edit it. <span style="FONT-STYLE: italic">&nbsp; </SPAN>Since the position 
+of hidden fields is not shown to the browser user, I suggest you put them either 
+at the beginning or the end of your forms if you need them.</P>
+
+<input name="myHiddenField" value="fromWebPage" type="hidden"> 
+</FORM>
+
+</body></html>
